@@ -1,11 +1,11 @@
 package com.example.android_312;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Queue;
-import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
     private Button num9;
