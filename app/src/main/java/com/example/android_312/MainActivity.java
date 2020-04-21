@@ -3,7 +3,10 @@ package com.example.android_312;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,13 +40,14 @@ public class MainActivity extends AppCompatActivity {
     private Button division;
     private Button multiply;
     private int calculate;
+    private Switch mode_switcher;
+    private View engineer_mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-
         inputSequence = new StringBuffer();
 
         num9.setOnClickListener(new View.OnClickListener() {
@@ -183,6 +187,14 @@ public class MainActivity extends AppCompatActivity {
                 inputSequence.setLength(0);
             }
         });
+
+
+        mode_switcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                engineer_mode.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     private void initView() {
@@ -206,6 +218,8 @@ public class MainActivity extends AppCompatActivity {
         minus = findViewById(R.id.btn_minus);
         division = findViewById(R.id.btn_division);
         multiply = findViewById(R.id.btn_multiply);
+        mode_switcher = findViewById(R.id.mode_switch);
+        engineer_mode = findViewById(R.id.engineer_calc);
     }
 
     private void getResult() {
