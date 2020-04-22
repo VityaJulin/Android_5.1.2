@@ -192,7 +192,11 @@ public class MainActivity extends AppCompatActivity {
         mode_switcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                engineer_mode.setVisibility(View.VISIBLE);
+                if (isChecked == true) {
+                    engineer_mode.setVisibility(View.VISIBLE);
+                } else {
+                    engineer_mode.setVisibility(View.GONE);
+                }
             }
         });
     }
