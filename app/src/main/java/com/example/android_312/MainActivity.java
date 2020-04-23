@@ -188,17 +188,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        mode_switcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked == true) {
-                    engineer_mode.setVisibility(View.VISIBLE);
-                } else {
-                    engineer_mode.setVisibility(View.GONE);
+        if (mode_switcher != null) {
+            mode_switcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked == true) {
+                        engineer_mode.setVisibility(View.VISIBLE);
+                    } else {
+                        engineer_mode.setVisibility(View.GONE);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     private void initView() {
