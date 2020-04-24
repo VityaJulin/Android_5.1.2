@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Button minus;
     private Button division;
     private Button multiply;
-    private int calculate;
+    private double calculate;
     private Switch mode_switcher;
     private View engineer_mode;
 
@@ -228,17 +228,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getResult() {
-        List<String> splitNumbers = new ArrayList<>(Arrays.asList(inputSequence.toString().split("\\D")));
-        List<String> splitSigns = new ArrayList<>(Arrays.asList(inputSequence.toString().split("\\d")));
+        List<String> splitNumbers = new ArrayList<>(Arrays.asList(inputSequence.toString().split("[+*/\\-]")));
+        List<String> splitSigns = new ArrayList<>(Arrays.asList(inputSequence.toString().split("[0-9]*[.,]?[0-9]")));
 
         Queue<String> signs = new ArrayDeque<>();
-        Queue<Integer> numbers = new ArrayDeque<>();
+        Queue<Double> numbers = new ArrayDeque<>();
 
         Iterator numberIterator = splitNumbers.iterator();
         Iterator signIterator = splitSigns.iterator();
 
         while (numberIterator.hasNext()) {
-            Integer num = Integer.parseInt((String) numberIterator.next());
+            Double num = Double.valueOf((String) numberIterator.next());
             numbers.add(num);
         }
 
