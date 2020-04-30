@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -40,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private Button division;
     private Button multiply;
     private double calculate;
-    private Switch mode_switcher;
-    private View engineer_mode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,18 +184,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        if (mode_switcher != null) {
-            mode_switcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if (isChecked == true) {
-                        engineer_mode.setVisibility(View.VISIBLE);
-                    } else {
-                        engineer_mode.setVisibility(View.GONE);
-                    }
-                }
-            });
-        }
     }
 
     private void initView() {
@@ -223,8 +207,6 @@ public class MainActivity extends AppCompatActivity {
         minus = findViewById(R.id.btn_minus);
         division = findViewById(R.id.btn_division);
         multiply = findViewById(R.id.btn_multiply);
-        mode_switcher = findViewById(R.id.mode_switch);
-        engineer_mode = findViewById(R.id.engineer_calc);
     }
 
     private void getResult() {
