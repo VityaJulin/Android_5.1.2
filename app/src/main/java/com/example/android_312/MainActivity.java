@@ -233,16 +233,16 @@ public class MainActivity extends AppCompatActivity {
         while (!signs.isEmpty()) {
             switch (signs.poll()) {
                 case "/":
-                    calculate = calculate.divide(numbers.poll());
+                    calculate = calculate.divide(numbers.poll()).setScale(8, BigDecimal.ROUND_HALF_EVEN);
                     break;
                 case "*":
-                    calculate = calculate.multiply(numbers.poll());
+                    calculate = calculate.multiply(numbers.poll()).setScale(8, BigDecimal.ROUND_HALF_EVEN);
                     break;
                 case "-":
-                    calculate = calculate.subtract(numbers.poll());
+                    calculate = calculate.subtract(numbers.poll()).setScale(8, BigDecimal.ROUND_HALF_EVEN);
                     break;
                 case "+":
-                    calculate = calculate.add(numbers.poll());
+                    calculate = calculate.add(numbers.poll()).setScale(8, BigDecimal.ROUND_HALF_EVEN);
                     break;
                 default:
                     break;
