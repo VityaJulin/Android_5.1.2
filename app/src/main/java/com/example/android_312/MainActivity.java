@@ -3,11 +3,11 @@ package com.example.android_312;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.math.BigDecimal;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private Button minus;
     private Button division;
     private Button multiply;
-    private double calculate;
+    private BigDecimal calculate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,13 +214,13 @@ public class MainActivity extends AppCompatActivity {
         List<String> splitSigns = new ArrayList<>(Arrays.asList(inputSequence.toString().split("[0-9]*[.,]?[0-9]")));
 
         Queue<String> signs = new ArrayDeque<>();
-        Queue<Double> numbers = new ArrayDeque<>();
+        Queue<BigDecimal> numbers = new ArrayDeque<>();
 
         Iterator numberIterator = splitNumbers.iterator();
         Iterator signIterator = splitSigns.iterator();
 
         while (numberIterator.hasNext()) {
-            Double num = Double.valueOf((String) numberIterator.next());
+            BigDecimal num = new BigDecimal(Double.valueOf((String.valueOf(numberIterator.next()))));
             numbers.add(num);
         }
 
@@ -233,16 +233,16 @@ public class MainActivity extends AppCompatActivity {
         while (!signs.isEmpty()) {
             switch (signs.poll()) {
                 case "/":
-                    calculate /= numbers.poll();
+                    calculate = calculate.divide(numbers.poll());
                     break;
                 case "*":
-                    calculate *= numbers.poll();
+                    calculate = calculate.multiply(numbers.poll());
                     break;
                 case "-":
-                    calculate -= numbers.poll();
+                    calculate = calculate.subtract(numbers.poll());
                     break;
                 case "+":
-                    calculate += numbers.poll();
+                    calculate = calculate.add(numbers.poll());
                     break;
                 default:
                     break;
