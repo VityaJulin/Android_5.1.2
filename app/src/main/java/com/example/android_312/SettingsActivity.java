@@ -46,6 +46,7 @@ public class SettingsActivity extends AppCompatActivity {
                             Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
                             intent.putExtra("file name", name);
                             startActivity(intent);
+
                         }
                     }
                 } else {

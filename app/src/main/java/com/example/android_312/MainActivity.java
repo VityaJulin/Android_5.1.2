@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
     private Button multiply;
     private BigDecimal calculate;
     public ImageView imageBackground;
-    public ImageView imageBackgroundLand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), name);
         Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
         imageBackground.setImageBitmap(bitmap);
-//        imageBackgroundLand.setImageBitmap(bitmap);
 
         inputSequence = new StringBuffer();
 
@@ -223,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
         division = findViewById(R.id.btn_division);
         multiply = findViewById(R.id.btn_multiply);
         imageBackground = findViewById(R.id.image_background);
-        imageBackgroundLand = findViewById(R.id.image_background_land);
+        //imageBackgroundLand = findViewById(R.id.image_background_land);
     }
 
     private void getResult() {
