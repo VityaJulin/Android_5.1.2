@@ -3,14 +3,11 @@ package com.example.android_312;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,8 +21,6 @@ public class SettingsActivity extends AppCompatActivity {
     private EditText fileName;
     private Button okBtn;
     private String name;
-    public ImageView imageBackground;
-    public ImageView imageBackgroundLand;
     public static final int REQUEST_CODE_PERMISSION_WRITE_STORAGE = 100;
     public static final int REQUEST_CODE_PERMISSION_READ_STORAGE = 10;
 
@@ -35,35 +30,29 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         fileName = findViewById(R.id.file_edtx);
         okBtn = findViewById(R.id.ok_btn);
-        imageBackground = findViewById(R.id.image_background);
-        imageBackgroundLand = findViewById(R.id.image_background_land);
+
 
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (getPermissionStatus()) {
-                    LoadImg();
-                    Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    if (isExternalStorageWritable()) {
+                        name = fileName.getText().toString();
+                        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), name);
+                        if (!file.exists() || !file.isFile()) {
+                            Toast.makeText(SettingsActivity.this, "File not found", Toast.LENGTH_SHORT).show();
+                            fileName.setText(null);
+                        } else {
+                            Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+                            intent.putExtra("file name", name);
+                            startActivity(intent);
+                        }
+                    }
+                } else {
+                    Toast.makeText(SettingsActivity.this, "Permission denied", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
-
-    private void LoadImg() {
-        if (isExternalStorageWritable()) {
-            name = fileName.getText().toString();
-            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), name);
-            if (!file.exists() && !file.isFile()) {
-                Toast.makeText(this, "File not found", Toast.LENGTH_SHORT).show();
-            }
-            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-            imageBackground.setImageBitmap(bitmap);
-            imageBackgroundLand.setImageBitmap(bitmap);
-            fileName.setText(null);
-        } else {
-            Toast.makeText(this, "Storage unavailable", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override

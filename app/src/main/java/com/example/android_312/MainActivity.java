@@ -1,12 +1,17 @@
 package com.example.android_312;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -38,12 +43,22 @@ public class MainActivity extends AppCompatActivity {
     private Button division;
     private Button multiply;
     private BigDecimal calculate;
+    public ImageView imageBackground;
+    public ImageView imageBackgroundLand;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+
+        Bundle arguments = getIntent().getExtras();
+        String name = arguments.get("file name").toString();
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), name);
+        Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+        imageBackground.setImageBitmap(bitmap);
+//        imageBackgroundLand.setImageBitmap(bitmap);
+
         inputSequence = new StringBuffer();
 
         num9.setOnClickListener(new View.OnClickListener() {
@@ -207,6 +222,8 @@ public class MainActivity extends AppCompatActivity {
         minus = findViewById(R.id.btn_minus);
         division = findViewById(R.id.btn_division);
         multiply = findViewById(R.id.btn_multiply);
+        imageBackground = findViewById(R.id.image_background);
+        imageBackgroundLand = findViewById(R.id.image_background_land);
     }
 
     private void getResult() {
